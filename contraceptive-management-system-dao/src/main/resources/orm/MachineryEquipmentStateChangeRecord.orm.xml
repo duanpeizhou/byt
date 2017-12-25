@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm
+	http://java.sun.com/xml/ns/persistence/orm_1_0.xsd"
+	version="1.0">
+	<access>PROPERTY</access>
+	
+	<entity class="cn.zectec.contraceptive.management.system.model.MachineryEquipmentStateChangeRecord">
+		<table name="machineryequipmentstatechangerecord"></table>
+		<discriminator-value>machineryequipmentstatechangerecord</discriminator-value>
+		<entity-listeners>
+			<entity-listener class="cn.zectec.contraceptive.management.system.repository.listener.GetMachineryEquipmentStatusInfoListener">
+				<post-persist method-name="postSave"/>
+			</entity-listener>			
+		</entity-listeners>
+		<attributes>
+			<basic name="hanpenDate">
+				<column name="hanpenDate"/>
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="detail">
+				<column name="detail"/>
+			</basic>
+			<basic name="state">
+				<column name="state"/>
+				<enumerated>STRING</enumerated>
+			</basic>
+			<many-to-one name="contraceptive" target-entity="cn.zectec.contraceptive.management.system.model.Contraceptive" >
+				<join-column name="contraceptive_id"/>
+			</many-to-one>
+		</attributes>
+	</entity>
+</entity-mappings>

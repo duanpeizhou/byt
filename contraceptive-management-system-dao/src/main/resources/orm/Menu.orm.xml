@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm
+	http://java.sun.com/xml/ns/persistence/orm_1_0.xsd"
+	version="1.0">
+	<access>PROPERTY</access>
+	<entity class="cn.zectec.contraceptive.management.system.model.Menu">
+		<table name="menu"></table>
+		<attributes>
+			<basic name="name">
+				<column name="name" />
+			</basic>
+			<basic name="order">
+				<column name="order_"/>
+			</basic>
+			<basic name="level">
+				<column name="level"/>
+			</basic>
+			<basic name="url">
+				<column name="url"/>
+			</basic>
+			<basic name="description">
+				<column name="description"/>
+			</basic>
+			<many-to-one name="parentMenu">
+			</many-to-one>
+			<one-to-many name="childMenu" mapped-by="parentMenu" fetch="EAGER">
+				<cascade><cascade-all/></cascade>
+			</one-to-many>
+		</attributes>
+	</entity>
+</entity-mappings>

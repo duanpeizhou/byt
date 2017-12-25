@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm
+	http://java.sun.com/xml/ns/persistence/orm_1_0.xsd"
+	version="1.0">
+	<access>PROPERTY</access>
+	<entity class="cn.zectec.contraceptive.management.system.model.GetMedicineRecord">
+		<table name="getmedicinerecord"></table>
+		<discriminator-value>getMedicineRecord</discriminator-value>
+		<entity-listeners>
+			<entity-listener class="cn.zectec.contraceptive.management.system.repository.listener.GetMedicineRecordListener">
+				<post-persist method-name="postSave"/>
+			</entity-listener>			
+		</entity-listeners>
+		<attributes>
+			<basic name="getMedicineDate">
+				<column name="getMedicineDate" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="addDate">
+				<column name="addDate"/>
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="currentConnectionState">
+				<column name="currentConnectionState"/>
+			</basic>
+			<basic name="idNumber">
+				<column name="idNumber"/>
+			</basic>
+			<basic name="name">
+				<column name="name"/>
+			</basic>
+			<basic name="sex">
+				<column name="sex"/>
+			</basic>
+			<basic name="householdRegistration">
+				<column name="householdRegistration"/>
+			</basic>
+			<basic name="age">
+				<column name="age"/>
+			</basic>
+			<basic name="amount">
+				<column name="amount"/>
+			</basic>
+			<basic name="stationName">
+				<column name="stationName"/>
+			</basic>
+			<basic name="address">
+				<column name="address"/>
+			</basic>
+			<basic name="billNumber">
+				<column name="billNumber"/>
+			</basic>
+			<basic name="turnoverSituation">
+				<column name="turnoverSituation"/>				
+			</basic>
+			<basic name="cargoRoadNo">
+				<column name="cargoRoadNo"/>				
+			</basic>
+			<basic name="birthDay">
+				<column name="birthDay"/>
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="beginDate">
+				<column name="beginDate"/>
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="endDate">
+				<column name="endDate"/>
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			
+			<many-to-one name="contraceptive">
+				<join-column name="contraceptive_id"/>
+			</many-to-one>
+			<many-to-one name="nation">
+				<join-column name="nation_id"/>
+			</many-to-one>
+			<many-to-one name="machineryEquipment">
+				<join-column name="machineryEquipment_id"/>
+			</many-to-one>
+		</attributes>
+	</entity>
+</entity-mappings>

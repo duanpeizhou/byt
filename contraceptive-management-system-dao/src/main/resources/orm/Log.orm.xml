@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm
+	http://java.sun.com/xml/ns/persistence/orm_1_0.xsd"
+	version="1.0">
+	<access>PROPERTY</access>
+	<entity class="cn.zectec.contraceptive.management.system.model.Log">
+		<table name="log"></table>
+		<attributes>
+			<basic name="title">
+				<column name="title"/>
+			</basic>
+			<basic name="titleDescription">
+				<column name="titleDescription"/>
+			</basic>
+			<basic name="uri">
+				<column name="uri"/>
+			</basic>
+			<basic name="operationDate">
+				<column name="operationDate"/>
+			</basic>
+			<basic name="ip">
+				<column name="ip"/>
+			</basic>
+			<basic name="username">
+				<column name="username"/>
+			</basic>
+			<basic name="logType">
+				<column name="logType"/>
+			</basic>
+			<basic name="managerID">
+				<column name="managerID"/>
+			</basic>
+		</attributes>
+	</entity>
+</entity-mappings>

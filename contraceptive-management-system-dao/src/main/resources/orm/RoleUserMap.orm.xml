@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm
+	http://java.sun.com/xml/ns/persistence/orm_1_0.xsd"
+	version="1.0">
+	<access>PROPERTY</access>
+	<entity class="cn.zectec.contraceptive.management.system.model.RoleUserMap">
+		<table name="role_manager"></table>
+		<attributes>
+			<many-to-one name="manager">
+				<join-column name="manager_id"/>
+			</many-to-one>
+			<many-to-one name="role">
+				<join-column name="role_id"/>
+			</many-to-one>
+		</attributes>
+	</entity>
+</entity-mappings>

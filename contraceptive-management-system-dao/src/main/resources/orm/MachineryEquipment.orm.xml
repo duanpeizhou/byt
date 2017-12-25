@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm
+	http://java.sun.com/xml/ns/persistence/orm_1_0.xsd"
+	version="1.0">
+	<access>PROPERTY</access>
+	<entity class="cn.zectec.contraceptive.management.system.model.MachineryEquipment">
+		<table name="machineryequipment"></table>
+		<attributes>
+			<basic name="longitude">
+				<column name="longitude" />
+			</basic>
+			<basic name="latitude" >
+				<column name="latitude" />
+			</basic>
+			<basic name="terminalType">
+				<column name="terminalType"/>
+			</basic>
+			<basic name="alias">
+				<column name="alias"/>
+			</basic>
+			<basic name="deviceNo" >
+				<column name="deviceNo" unique="true" />
+			</basic>
+			<basic name="no" >
+				<column name="no" unique="true" />
+			</basic>
+			<basic name="builtinPhone">
+				<column name="builtinPhone"/>
+			</basic>
+			<basic name="adminPassword">
+				<column name="adminPassword"/>
+			</basic>
+			<basic name="distributionPoints">
+				<column name="distributionPoints"/>
+			</basic>
+			<basic name="creationTime">
+				<column name="creationTime"/>
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="ip">
+				<column name="ip"/>
+			</basic>
+			<basic name="version">
+				<column name="version"/>
+			</basic>
+			<basic name="aislesNum">
+				<column name="aislesNum"/>
+			</basic>
+			<basic name="sendNum">
+				<column name="sendNum"/>
+			</basic>
+			<many-to-one name="area" target-entity="cn.zectec.contraceptive.management.system.model.Area" >
+				<join-column name="area_id" />
+			</many-to-one>
+			
+			<one-to-many name="aisles" mapped-by="machineryEquipment" fetch="EAGER">
+				<order-by>index_ ASC</order-by>
+				<cascade>
+					<cascade-all/>
+				</cascade>
+			</one-to-many>
+			<one-to-many name="records" target-entity="cn.zectec.contraceptive.management.system.model.Record" mapped-by="machineryEquipment" fetch="LAZY">
+				<cascade><cascade-all/></cascade>
+			</one-to-many>
+			<one-to-one name="machineryEquipmentState" mapped-by="machineryEquipment">
+				<cascade><cascade-all/></cascade>
+			</one-to-one>
+		</attributes>
+	</entity>
+</entity-mappings>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+	<context:component-scan base-package="cn.zectec.contraceptive.management.system.manager"/>
+	<context:component-scan base-package="cn.zectec.contraceptive.management.system.service"/>
+	<task:annotation-driven />
+	
+	<bean id="collectorServer" class="cn.zectec.contraceptive.management.system.sdk.netty.impl.SDKServerImpl" init-method="init">
+		<property name="port" value="1084"/>
+		<property name="heartBeatSecond" value="600"></property>
+		<property name="handlers">
+			<list>
+		    	<bean class="cn.zectec.contraceptive.management.system.collector.handler.JPASessionManagerHandler" autowire="byType"/>
+				<bean class="cn.zectec.contraceptive.management.system.collector.handler.GetEquipmentHandler" autowire="byType"/>
+				<bean class="cn.zectec.contraceptive.management.system.collector.handler.UpdateConnectedStateHandler" autowire="byType"/>
+				<bean class="cn.zectec.contraceptive.management.system.collector.handler.UpdateLastUpdateTimeHandler" autowire="byType">
+					<property name="ideTime" value="3600000" />
+				</bean>
+				<bean class="cn.zectec.contraceptive.management.system.collector.handler.SaveOfflineTradeRecordHandler" autowire="byType">
+					<property name="cityNo" value="${City.no}"/>
+					<property name="oldCityNO" value="${OldCity.no}"/>
+					<property name="provinceNo" value="${Province.no}"></property>
+				</bean>
+				<bean class="cn.zectec.contraceptive.management.system.collector.handler.OnlineGetHandler" autowire="byType">
+					<property name="cityNo" value="${City.no}"/>
+					<property name="oldCityNO" value="${OldCity.no}"/>
+					<property name="provinceNo" value="${Province.no}" />
+					<property name="idcardNos">
+						<list>
+							<value>130702198403110615</value>
+						</list>
+					</property>
+				</bean>
+				<bean class="cn.zectec.contraceptive.management.system.collector.handler.UpdateEquipmentDateHandler" autowire="byType"/>
+				<bean class="cn.zectec.contraceptive.management.system.collector.handler.CheckStockOutHandler" autowire="byType"/>
+				<bean class="cn.zectec.contraceptive.management.system.collector.handler.CheckDoorStateHander" autowire="byType"/>
+				<bean class="cn.zectec.contraceptive.management.system.collector.handler.CheckTemporatureHandler" autowire="byType"/>
+				<bean class="cn.zectec.contraceptive.management.system.collector.handler.CheckAisleFailure" autowire="byType"/>
+		        <bean class="cn.zectec.contraceptive.management.system.collector.handler.CheckCardReaderHandler" autowire="byType"/>
+				<bean class="cn.zectec.contraceptive.management.system.collector.handler.UpdateSignalStrengthHandler" autowire="byType"/>
+				<bean class="cn.zectec.contraceptive.management.system.collector.handler.StatusReportResponseHandler" autowire="byType"/>
+			</list>
+		</property>
+		<property name="eventHandlers">
+			<list>
+				<bean class="cn.zectec.contraceptive.management.system.collector.event.handler.EquipmentConnectHandler" autowire="byType"/>
+				<bean class="cn.zectec.contraceptive.management.system.collector.event.handler.EquipmentDisConnectHandler" autowire="byType"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="ageStatisticalManager" class="cn.zectec.contraceptive.management.system.manager.impl.AgeStatisticalManagerImpl">
+		<property name="baseCityId" value="${City.no}"></property>
+	</bean>
+	
+	<bean id="areaStatisticalManager" class="cn.zectec.contraceptive.management.system.manager.impl.AreaStatisticalManagerImpl">
+		<property name="baseCityId" value="${City.no}"></property>
+	</bean>
+	
+	<bean id="contraceptiveStatisticalManager" class="cn.zectec.contraceptive.management.system.manager.impl.ContraceptiveStatisticalManagerImpl">
+		<property name="baseCityId" value="${City.no}"></property>
+	</bean>
+	
+</beans>

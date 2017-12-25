@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm
+	http://java.sun.com/xml/ns/persistence/orm_1_0.xsd"
+	version="1.0">
+	<access>PROPERTY</access>
+	<entity class="cn.zectec.contraceptive.management.system.model.Manager">
+		<table name="manager"></table>
+		<attributes>
+			<basic name="username">
+				<column name="username" />
+			</basic>
+			<basic name="password">
+				<column name="password" />
+			</basic>
+			<basic name="name">
+				<column name="name" />
+			</basic>
+			<basic name="ip">
+				<column name="ip" />
+			</basic>
+			<basic name="loginTimes">
+				<column name="loginTimes" />
+			</basic>
+			<basic name="enable">
+				<column name="enable" />
+			</basic>
+			<basic name="remark">
+				<column name="remark"/>
+			</basic>
+			<basic name="lastLoginTime">
+				<column name="lastLoginTime" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="LastModifyPasswordTime">
+				<column name="LastModifyPasswordTime" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="superManager">
+				<column name="superManager" />
+			</basic>
+			<version name="version">
+				<column name="version" />
+			</version>
+			<many-to-one name="department">
+			</many-to-one>
+			<many-to-one name="county">
+				<join-column name="county_id" />
+			</many-to-one>
+			<many-to-one name="townshipStreet">
+				<join-column name="townshipStreet_id" />
+			</many-to-one>
+			<many-to-many name="role">
+				<join-table name="role_manager">
+					<join-column name="manager_id" />
+					<inverse-join-column name="role_id" />
+				</join-table>
+			</many-to-many>
+		</attributes>
+	</entity>
+</entity-mappings>

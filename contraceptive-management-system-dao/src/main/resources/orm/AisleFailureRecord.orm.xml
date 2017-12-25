@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm
+	http://java.sun.com/xml/ns/persistence/orm_1_0.xsd"
+	version="1.0">
+	<access>PROPERTY</access>
+	<entity class="cn.zectec.contraceptive.management.system.model.AisleFailureRecord">
+		<table name="aislefailurerecord"></table>
+		<discriminator-value>aisleFailureRecord</discriminator-value>
+		<attributes>
+			<basic name="failureDate">
+				<column name="failureDate" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="recoveryDate">
+				<column name="recoveryDate"/>
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			
+			<many-to-one name="aisle">
+				<join-column name="aisle_id"/>
+				<cascade>
+					<cascade-persist/>
+				</cascade>
+			</many-to-one>
+		</attributes>
+	</entity>
+</entity-mappings>

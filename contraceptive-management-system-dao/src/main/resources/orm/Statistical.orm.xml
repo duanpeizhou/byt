@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm
+	http://java.sun.com/xml/ns/persistence/orm_1_0.xsd"
+	version="1.0">
+	<access>PROPERTY</access>
+	<mapped-superclass class="cn.zectec.contraceptive.management.system.model.Statistical">
+		<attributes>
+			<id name="id" >
+				<column name="id" />
+				<generated-value strategy="AUTO" />
+			</id>
+			<basic name="statisticalDate">
+				<column name="statisticalDate"/>
+				<temporal>DATE</temporal>
+			</basic>
+			<basic name="level">
+				<column name="level"/>
+				<enumerated>STRING</enumerated>
+			</basic>
+			<basic name="total">
+				<column name="total"/>
+			</basic>
+			<basic name="manTotal">
+				<column name="manTotal"/>
+			</basic>
+			<basic name="womanTotal">
+				<column name="womanTotal"/>
+			</basic>
+			<basic name="countyOfCity">
+				<column name="countyOfCity"/>
+			</basic>
+			<basic name="statisticalDate">
+				<column name="statisticalDate"/>
+				<temporal>DATE</temporal>
+			</basic>
+			<basic name="countyOutCity">
+				<column name="countyOutCity"/>
+			</basic>
+			<basic name="provinceOutCity">
+				<column name="provinceOutCity"/>
+			</basic>
+			<basic name="otherProvinces">
+				<column name="otherProvinces"/>
+			</basic>
+			<many-to-one name="area">
+				<join-column name="area_id"/>
+			</many-to-one>
+		</attributes>
+	</mapped-superclass>
+</entity-mappings>

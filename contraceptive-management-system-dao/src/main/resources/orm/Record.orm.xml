@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm
+	http://java.sun.com/xml/ns/persistence/orm_1_0.xsd"
+	version="1.0">
+	<access>PROPERTY</access>
+	<entity class="cn.zectec.contraceptive.management.system.model.Record">
+		<table name="record"></table>
+		<inheritance strategy="JOINED" />
+		<discriminator-value>record</discriminator-value>
+		<discriminator-column discriminator-type="STRING" name="record_type"/>
+		<attributes>
+			<many-to-one name="machineryEquipment">
+			</many-to-one>
+		</attributes>
+	</entity>
+</entity-mappings>

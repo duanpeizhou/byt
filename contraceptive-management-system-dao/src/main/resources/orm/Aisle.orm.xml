@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm
+	http://java.sun.com/xml/ns/persistence/orm_1_0.xsd"
+	version="1.0">
+	<access>PROPERTY</access>
+	<entity class="cn.zectec.contraceptive.management.system.model.Aisle">
+		<table name="aisle"></table>
+		<attributes>
+			<basic name="num">
+				<column name="num" />
+			</basic>
+			<basic name="version">
+				<column name="version"/>
+			</basic>
+			<basic name="index_">
+				<column name="index_"/>
+			</basic>
+			<basic name="stockout">
+				<column name="stockout"/>
+			</basic>
+			<basic name="stockoutDate">
+				<column name="stockoutDate"/>
+			</basic>
+			<basic name="aisleFailure">
+				<column name="aisleFailure"/>
+			</basic>
+			<basic name="aisleFailureDate">
+				<column name="aisleFailureDate"/>
+			</basic>
+			<many-to-one name="contraceptive">
+				<join-column name="contraceptive_id"/>
+				<cascade>
+					<cascade-persist/>
+				</cascade>
+			</many-to-one>
+			<many-to-one name="machineryEquipment">
+			</many-to-one>
+		</attributes>
+	</entity>
+</entity-mappings>

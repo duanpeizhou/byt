@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm
+	http://java.sun.com/xml/ns/persistence/orm_1_0.xsd"
+	version="1.0">
+	<access>PROPERTY</access>
+	<entity class="cn.zectec.contraceptive.management.system.model.Strategy">
+		<table name="strategy"></table>
+		<attributes>
+			<basic name="name">
+				<column name="name" />
+			</basic>
+			<basic name="used">
+				<column name="used" />
+			</basic>
+			<basic name="turnOnLightState">
+				<column name="turnOnLightState"/>
+			</basic>
+			<basic name="turnOnBeginLightHour">
+				<column name="turnOnBeginLightHour"/>
+			</basic>
+			<basic name="turnOnEndLightHour">
+				<column name="turnOnEndLightHour"/>
+			</basic>
+			<basic name="turnOnBeginLightMinute">
+				<column name="turnOnBeginLightMinute"/>
+			</basic>
+			<basic name="turnOnEndLightMinute">
+				<column name="turnOnEndLightMinute"/>
+			</basic>
+			<basic name="turnOnPowerState">
+				<column name="turnOnPowerState"/>
+			</basic>
+			<basic name="turnOnBeginPowerHour">
+				<column name="turnOnBeginPowerHour"/>
+			</basic>
+			<basic name="turnOnEndPowerHour">
+				<column name="turnOnEndPowerHour"/>
+			</basic>
+			<basic name="turnOnBeginPowerMinute">
+				<column name="turnOnBeginPowerMinute"/>
+			</basic>
+			<basic name="turnOnEndPowerMinute">
+				<column name="turnOnEndPowerMinute"/>
+			</basic>
+			<basic name="turnOnVedioState">
+				<column name="turnOnVedioState"/>
+			</basic>
+			<basic name="turnOnBeginVedioHour">
+				<column name="turnOnBeginVedioHour"/>
+			</basic>
+			<basic name="turnOnEndVedioHour">
+				<column name="turnOnEndVedioHour"/>
+			</basic>
+			<basic name="turnOnBeginVedioMinute">
+				<column name="turnOnBeginVedioMinute"/>
+			</basic>
+			<basic name="turnOnEndVedioMinute">
+				<column name="turnOnEndVedioMinute"/>
+			</basic>
+			<basic name="alarmMinTemperature">
+				<column name="alarmMinTemperature"/>
+			</basic>
+			<basic name="alarmMaxTemperature">
+				<column name="alarmMaxTemperature"/>
+			</basic>
+			<basic name="maxAge">
+				<column name="maxAge"/>
+			</basic>
+			<basic name="minAge">
+				<column name="minAge"/>
+			</basic>
+			<basic name="adminPassword">
+				<column name="adminPassword"/>
+			</basic>
+			<basic name="phone">
+				<column name="phone"/>
+			</basic>
+			<basic name="ip">
+				<column name="ip"/>
+			</basic>
+			<basic name="port">
+				<column name="port"/>
+			</basic>
+			<basic name="giveOutStrategyEnable">
+				<column name="giveOutStrategyEnable"/>
+			</basic>
+			<basic name="giveOutDay">
+				<column name="giveOutDay"/>
+			</basic>
+			<basic name="giveOutAmount">
+				<column name="giveOutAmount"/>
+			</basic>
+			<basic name="alarmOutStockAmount">
+				<column name="alarmOutStockAmount"/>
+			</basic>
+			<basic name="defaultStrategy">
+				<column name="defaultStrategy"/>
+			</basic>
+		</attributes>
+	</entity>
+</entity-mappings>

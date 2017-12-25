@@ -1,0 +1,283 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>cn.zectec.contraceptive.management.system</groupId>
+	<artifactId>contraceptive-management-system</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>contraceptive-management-system</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<springPlatformVersion>3.1.4.RELEASE</springPlatformVersion>
+		<contraceptive-management-system-version>0.0.1-SNAPSHOT</contraceptive-management-system-version>
+		<org.aspectj-version>1.6.10</org.aspectj-version>
+		<org.hibernate-version>3.6.10.Final</org.hibernate-version>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.0</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+		</plugins>
+		<defaultGoal>compile</defaultGoal>
+	</build>
+
+	<modules>
+		<module>../contraceptive-management-system-model</module>
+		<module>../contraceptive-management-system-dao</module>
+		<module>../contraceptive-management-system-manager</module>
+		<module>../contraceptive-management-system-service</module>
+		<module>../contraceptive-management-system-web</module>
+		<module>../contraceptive-management-system-sdk</module>
+		<module>
+			../contraceptive-management-system-collector-server
+		</module>
+		<module>../contraceptive-management-system-util</module>
+		<module>../contraceptive-management-system-sender</module>
+	</modules>
+
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- AspectJ -->
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjrt</artifactId>
+				<version>${org.aspectj-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjweaver</artifactId>
+				<version>${org.aspectj-version}</version>
+			</dependency>
+
+			<!-- hibernate -->
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-core</artifactId>
+				<version>${org.hibernate-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-entitymanager</artifactId>
+				<version>${org.hibernate-version}</version>
+			</dependency>
+			<!-- JPA -->
+			<dependency>
+				<groupId>javax.persistence</groupId>
+				<artifactId>persistence-api</artifactId>
+				<version>1.0.2</version>
+			</dependency>
+			<!-- Spring data jpa -->
+			<dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-jpa</artifactId>
+				<version>1.2.0.RELEASE</version>
+			</dependency>
+
+			<!-- Commons -->
+			<dependency>
+				<groupId>commons-logging</groupId>
+				<artifactId>commons-logging</artifactId>
+				<version>1.1.1</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-logging</groupId>
+				<artifactId>commons-logging-api</artifactId>
+				<version>1.1</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-collections</groupId>
+				<artifactId>commons-collections</artifactId>
+				<version>3.2</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-fileupload</groupId>
+				<artifactId>commons-fileupload</artifactId>
+				<version>1.2.2</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>2.0.1</version>
+			</dependency>
+			<!-- log4j -->
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>1.2.9</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-nop</artifactId>
+				<version>1.5.8</version>
+			</dependency>
+
+			<!-- Servlet -->
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+				<version>2.5</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet.jsp</groupId>
+				<artifactId>jsp-api</artifactId>
+				<version>2.1</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>jstl</artifactId>
+				<version>1.1.1</version>
+			</dependency>
+			<dependency>
+				<groupId>taglibs</groupId>
+				<artifactId>standard</artifactId>
+				<version>1.1.1</version>
+			</dependency>
+
+			<!-- netty -->
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-all</artifactId>
+				<version>4.0.18.Final</version>
+			</dependency>
+			<!-- junit -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.10</version>
+				<scope>test</scope>
+			</dependency>
+
+			<!-- Jackson JSON Mapper -->
+			<dependency>
+				<groupId>org.codehaus.jackson</groupId>
+				<artifactId>jackson-mapper-asl</artifactId>
+				<version>1.9.12</version>
+			</dependency>
+
+			<!-- spring -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${springPlatformVersion}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-bean</artifactId>
+				<version>${springPlatformVersion}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${springPlatformVersion}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aop</artifactId>
+				<version>${springPlatformVersion}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aspects</artifactId>
+				<version>${springPlatformVersion}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${springPlatformVersion}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context-support</artifactId>
+				<version>${springPlatformVersion}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${springPlatformVersion}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${springPlatformVersion}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-orm</artifactId>
+				<version>${springPlatformVersion}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${springPlatformVersion}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>
+					cn.zectec.contraceptive.management.system
+				</groupId>
+				<artifactId>
+					contraceptive-management-system-model
+				</artifactId>
+				<version>${contraceptive-management-system-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>
+					cn.zectec.contraceptive.management.system
+				</groupId>
+				<artifactId>
+					contraceptive-management-system-service
+				</artifactId>
+				<version>${contraceptive-management-system-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>
+					cn.zectec.contraceptive.management.system
+				</groupId>
+				<artifactId>
+					contraceptive-management-system-dao
+				</artifactId>
+				<version>${contraceptive-management-system-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>
+					cn.zectec.contraceptive.management.system
+				</groupId>
+				<artifactId>
+					contraceptive-management-system-manager
+				</artifactId>
+				<version>${contraceptive-management-system-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>
+					cn.zectec.contraceptive.management.system
+				</groupId>
+				<artifactId>
+					contraceptive-management-system-sdk
+				</artifactId>
+				<version>${contraceptive-management-system-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>
+					cn.zectec.contraceptive.management.system
+				</groupId>
+				<artifactId>
+					contraceptive-management-system-util
+				</artifactId>
+				<version>${contraceptive-management-system-version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+</project>

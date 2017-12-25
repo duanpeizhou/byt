@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm
+	http://java.sun.com/xml/ns/persistence/orm_1_0.xsd"
+	version="1.0">
+	<access>PROPERTY</access>
+	<entity class="cn.zectec.contraceptive.management.system.model.OutStockReplenishmentRecord">
+		<table name="outstockreplenishmentrecord"></table>
+		<discriminator-value>outStockReplenishmentRecord</discriminator-value>
+		<attributes>
+			<basic name="outStockDate">
+				<column name="outStockDate"/>
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="replenishmentDate">
+				<column name="replenishmentDate"/>
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<many-to-one name="aisle">
+				<join-column name="aisle_id"/>
+			</many-to-one>
+			<many-to-one name="contraceptive">
+				<join-column name="contraceptive_id"/>
+			</many-to-one>
+		</attributes>
+	</entity>
+</entity-mappings>

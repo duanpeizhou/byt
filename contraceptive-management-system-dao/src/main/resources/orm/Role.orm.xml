@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm
+	http://java.sun.com/xml/ns/persistence/orm_1_0.xsd"
+	version="1.0">
+	<access>PROPERTY</access>
+	<entity class="cn.zectec.contraceptive.management.system.model.Role">
+		<table name="role"></table>
+		<attributes>
+			<basic name="name">
+				<column name="name" />
+			</basic>
+			<basic name="state" >
+				<column name="state" column-definition="int" />
+			</basic>
+			<basic name="description">
+				<column name="description"/>
+			</basic>
+			<basic name="remark">
+				<column name="remark"/>
+			</basic>
+			<many-to-many name="managers" target-entity="cn.zectec.contraceptive.management.system.model.Manager">
+				<join-table name="role_manager">
+					<join-column name="role_id"/>
+					<inverse-join-column name="manager_id"/>
+				</join-table>
+				<cascade><cascade-all/></cascade>
+			</many-to-many>
+			<many-to-many name="permissions" target-entity="cn.zectec.contraceptive.management.system.model.Permission">
+				<join-table name="role_permission">
+					<join-column name="role_id"/>
+					<inverse-join-column name="permission_id"/>
+				</join-table>
+				<cascade><cascade-all/></cascade>
+			</many-to-many>
+		</attributes>
+	</entity>
+</entity-mappings>

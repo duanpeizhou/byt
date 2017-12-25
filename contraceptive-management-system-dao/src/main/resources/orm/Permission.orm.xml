@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm
+	http://java.sun.com/xml/ns/persistence/orm_1_0.xsd"
+	version="1.0">
+	<access>PROPERTY</access>
+	<entity class="cn.zectec.contraceptive.management.system.model.Permission">
+		<table name="permission"></table>
+		<inheritance strategy="JOINED"/>
+		<discriminator-value>permission</discriminator-value>
+		<discriminator-column discriminator-type="STRING" name="permission_type"/>
+		<attributes>
+			<basic name="name">
+				<column name="name" />
+			</basic>
+			<basic name="description">
+				<column name="description"/>
+			</basic>
+		</attributes>
+	</entity>
+</entity-mappings>

@@ -1,0 +1,40 @@
+BODY {
+	BACKGROUND-POSITION: 50% top;
+	MARGIN: 0px;
+	text-align: center;
+	FONT-FAMILY:  "宋体";
+	background-image: url(bj_1.jpg);
+	background-repeat: repeat-x;
+	background-color: #1176BE;
+}
+TD {
+	FONT-SIZE: 12px; COLOR: #000000; LINE-HEIGHT: 20px; TEXT-DECORATION: none
+}
+A:link {
+	COLOR: #414141; LINE-HEIGHT: 20px; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: #414141; LINE-HEIGHT: 20px; TEXT-DECORATION: none
+}
+A:active {
+	COLOR: #999999; LINE-HEIGHT: 20px; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #0080FF; LINE-HEIGHT: 20px; TEXT-DECORATION: underline
+}
+
+.A1{
+	font-size:12px; color:#4C4C4C; font-weight: normal;	
+}
+
+
+.A2{
+	font-size:12px; color:#FFFFFF; font-weight: normal;	
+}
+
+.input1 {
+	height: 19px; width: 160px; border: 1px solid #72B3E2; background-color:#F7FBFF
+}
+.input2 {
+	height: 19px; width: 160px; border: 1px solid #72B3E2; background-color:#F7FBFF
+}

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="cms-repository"
+		transaction-type="RESOURCE_LOCAL">
+		<mapping-file>orm/Aisle.orm.xml</mapping-file>
+		<mapping-file>orm/AisleFailureRecord.orm.xml</mapping-file>
+		<mapping-file>orm/Area.orm.xml</mapping-file>
+		<mapping-file>orm/Base.orm.xml</mapping-file>
+		<mapping-file>orm/CardReaderFailureRecord.orm.xml</mapping-file>
+		<mapping-file>orm/Contraceptive.orm.xml</mapping-file>
+		<mapping-file>orm/Department.orm.xml</mapping-file>
+		<mapping-file>orm/GetMedicineRecord.orm.xml</mapping-file>
+		<mapping-file>orm/Log.orm.xml</mapping-file>
+		<mapping-file>orm/MachineryEquipment.orm.xml</mapping-file>
+		<mapping-file>orm/MachineryEquipmentStateChangeRecord.orm.xml</mapping-file>
+		<mapping-file>orm/MachineryEquipmentStateInfo.orm.xml</mapping-file>
+		<mapping-file>orm/Manager.orm.xml</mapping-file>
+		<mapping-file>orm/Menu.orm.xml</mapping-file>
+		<mapping-file>orm/MenuPermission.orm.xml</mapping-file>
+		<mapping-file>orm/Nation.orm.xml</mapping-file>
+		<mapping-file>orm/OnlineOfflineRecord.orm.xml</mapping-file>
+		<mapping-file>orm/OpenDoorRecord.orm.xml</mapping-file>
+		<mapping-file>orm/OutStockReplenishmentRecord.orm.xml</mapping-file>
+		<mapping-file>orm/OverTemperatureRecord.orm.xml</mapping-file>
+		<mapping-file>orm/Permission.orm.xml</mapping-file>
+		<mapping-file>orm/Record.orm.xml</mapping-file>
+		<mapping-file>orm/Role.orm.xml</mapping-file>
+		<mapping-file>orm/Strategy.orm.xml</mapping-file>
+		<mapping-file>orm/Statistical.orm.xml</mapping-file>
+		<mapping-file>orm/ContraceptiveStatistical.orm.xml</mapping-file>
+		<mapping-file>orm/AreaStatistical.orm.xml</mapping-file>
+		<mapping-file>orm/AgeStatistical.orm.xml</mapping-file>
+		<mapping-file>orm/RoleUserMap.orm.xml</mapping-file>
+		<mapping-file>orm/RolePermissionMap.orm.xml</mapping-file>
+		<mapping-file>orm/AreaPermission.orm.xml</mapping-file>
+
+		<properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
+			<property name="hibernate.hbm2ddl.auto" value="create" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.characterEncoding" value="utf8" />
+		</properties>
+	</persistence-unit>
+</persistence>

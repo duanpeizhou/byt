@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm
+	http://java.sun.com/xml/ns/persistence/orm_1_0.xsd"
+	version="1.0">
+	<access>PROPERTY</access>
+	<entity class="cn.zectec.contraceptive.management.system.model.MachineryEquipmentStateInfo">
+		<table name="machineryequipmentstateinfo"></table>
+		<attributes>
+			<basic name="signalStrength">
+				<column name="signalStrength" />
+			</basic>
+			<basic name="deviceTemperature">
+				<column name="deviceTemperature"/>
+			</basic>
+			<basic name="connectionState">
+				<column name="connectionState"/>
+			</basic>
+			<basic name="onlineDate">
+				<column name="onlineDate"/>
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="hardNo">
+				<column name="hardNo"/>
+			</basic>
+			<basic name="ver">
+				<column name="ver"/>
+			</basic>
+			<basic name="faultNo">
+				<column name="faultNo"/>
+			</basic>
+			<basic name="OfflineDate">
+				<column name="OfflineDate"/>
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="doorState">
+				<column name="doorState"/>
+			</basic>
+			<basic name="doorDate">
+				<column name="doorDate"/>
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="lastUpdateTime">
+				<column name="lastUpdateTime"/>
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="closeDoorDate">
+				<column name="closeDoorDate"/>
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="overTemperatureDate">
+				<column name="overTemperatureDate"/>
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="stockOut">
+				<column name="stockOut"/>
+			</basic>
+			<basic name="overTemperature">
+				<column name="overTemperature"/>
+			</basic>
+			<basic name="cardReaderFailure">
+				<column name="cardReaderFailure"/>
+			</basic>
+			<basic name="cardReaderFailureDate">
+				<column name="cardReaderFailureDate"/>
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<one-to-one name="machineryEquipment"></one-to-one>
+		</attributes>
+	</entity>
+</entity-mappings>

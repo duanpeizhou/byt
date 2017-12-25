@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+	<task:annotation-driven />
+	<!-- 开启注解 -->
+	<mvc:annotation-driven>
+		<mvc:message-converters register-defaults="true">
+			<bean
+				class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/plain;charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+	<context:annotation-config />
+
+	<!-- 静态资源默认访问 -->
+	<mvc:default-servlet-handler />
+	<!-- 开启扫描Controller -->
+	<context:component-scan base-package="cn.zectec.contraceptive.management.system.web" />
+
+
+	<!-- 视图解析器 -->
+	<bean
+		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="mediaTypes">
+			<map>
+				<entry key="json" value="application/json;charset=utf-8" />
+			</map>
+		</property>
+		<property name="defaultViews">
+			<list>
+				<bean class="cn.zectec.contraceptive.management.system.web.aop.JsonView" />
+			</list>
+		</property>
+		<property name="viewResolvers">
+			<list>
+				<ref bean="jsp" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="location"/>
+	</bean>
+
+	<bean id="jsp"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+
+
+	<bean id="jsonFilterAdvisor"
+		class="cn.zectec.contraceptive.management.system.web.aop.JSONFilterAdvisor" />
+	<aop:config>
+		<aop:pointcut
+			expression="execution(* cn.zectec.contraceptive.management.system.web.controller.*.*(..))"
+			id="jsonFilterPointCut" />
+		<aop:advisor advice-ref="jsonFilterAdvisor" pointcut-ref="jsonFilterPointCut" />
+	</aop:config>
+
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/*" />
+			<bean
+				class="cn.zectec.contraceptive.management.system.web.interceptor.LoginCheckInterceptor">
+				<property name="loginUri" value="/login" />
+				<property name="logoutUri" value="/logout" />
+				<property name="loginHandleUri" value="/login" />
+				<property name="loginMethod" value="POST" />
+				<property name="loginSuccessUri" value="/index" />
+				<property name="needCheckUri">
+					<list>
+						<value>/index</value>
+						<value>/logdatagrid</value>
+						<value>/log</value>
+						<value>/onlineMachineryEquipment</value>
+						<value>/offlineMachineryEquipment</value>
+						<value>/stockoutAisles</value>
+						<value>/aisleFailureAisles</value>
+						<value>/cardReaderFailureMachineryEquipment</value>
+						<value>/openMachineryEquipment</value>
+						<value>/onlineOfflineRecords</value>
+						<value>/getMedicineRecords</value>
+						<value>/getOutStockReplenishmentRecord</value>
+						<value>/getAisleFailureRecords</value>
+						<value>/openDoorRecord</value>
+						<value>/cardReaderFailureRecord</value>
+						<value>/overTemperatureRecord</value>
+						<value>/machineryEquipmentui</value>
+						<value>/getContraceptiveView</value>
+						<value>/overTemperatureMachineryEquipment</value>
+						<value>/getMedicine</value>
+						<value>/machineryEquipmentStateChangeRecord</value>
+						<value>/strategylist</value>
+						<value>/areaStatistical</value>
+						<value>/ageStatistical</value>
+						<value>/contraceptiveStatistical</value>
+						<value>/dictionaryMachineryEquipment</value>
+						<value>/departMentController</value>
+						<value>/manager</value>
+						<value>/menuManager</value>
+						<value>/rolemanagerui</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/*" />
+			<bean
+				class="cn.zectec.contraceptive.management.system.web.interceptor.PermissionInterceptor">
+				<property name="noPermissionUrl" value="/noPermission"></property>
+			</bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+</beans>
