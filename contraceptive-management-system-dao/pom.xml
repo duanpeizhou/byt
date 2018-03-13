@@ -5,6 +5,7 @@
 		<groupId>cn.zectec.contraceptive.management.system</groupId>
 		<artifactId>contraceptive-management-system</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../contraceptive-management-system/pom.xml</relativePath>
 	</parent>
 	<artifactId>contraceptive-management-system-dao</artifactId>
 

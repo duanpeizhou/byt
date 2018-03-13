@@ -5,6 +5,7 @@
 		<groupId>cn.zectec.contraceptive.management.system</groupId>
 		<artifactId>contraceptive-management-system</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../contraceptive-management-system/pom.xml</relativePath>
 	</parent>
 	<artifactId>contraceptive-management-system-collector-server</artifactId>
 	<dependencies>
@@ -43,13 +44,13 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-nop</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>cn.zectec.contraceptive.management.system</groupId>
-			<artifactId>
-				contraceptive-management-system-uploaddata
-			</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>cn.zectec.contraceptive.management.system</groupId>-->
+			<!--<artifactId>-->
+				<!--contraceptive-management-system-uploaddata-->
+			<!--</artifactId>-->
+			<!--<version>0.0.1-SNAPSHOT</version>-->
+		<!--</dependency>-->
 		<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>

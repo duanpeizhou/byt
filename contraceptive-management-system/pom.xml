@@ -39,9 +39,7 @@
 		<module>../contraceptive-management-system-service</module>
 		<module>../contraceptive-management-system-web</module>
 		<module>../contraceptive-management-system-sdk</module>
-		<module>
-			../contraceptive-management-system-collector-server
-		</module>
+		<module>../contraceptive-management-system-collector-server</module>
 		<module>../contraceptive-management-system-util</module>
 		<module>../contraceptive-management-system-sender</module>
 	</modules>

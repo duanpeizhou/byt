@@ -1,16 +1,4 @@
-﻿package cn.zectec.contraceptive.management.system.web.interceptor;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+package cn.zectec.contraceptive.management.system.web.interceptor;
 
 import cn.zectec.contraceptive.management.system.model.Log.LogType;
 import cn.zectec.contraceptive.management.system.model.Manager;
@@ -18,6 +6,16 @@ import cn.zectec.contraceptive.management.system.security.service.SecurityContex
 import cn.zectec.contraceptive.management.system.service.IManagerService;
 import cn.zectec.contraceptive.management.system.web.controller.ContraceptiveController;
 import cn.zectec.contraceptive.management.system.web.util.ServletUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class LoginCheckInterceptor extends HandlerInterceptorAdapter{
 	private List<String> needCheckUri = new ArrayList<String>();

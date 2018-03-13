@@ -7,3 +7,5 @@ heap_dump/
 .svn/
 target/
 log/
+.idea/
+*.iml
