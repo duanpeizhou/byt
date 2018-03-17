@@ -17,8 +17,8 @@
 		</dependency>
 		<dependency>
 			<groupId>cglib</groupId>
-			<artifactId>cglib-full</artifactId>
-			<version>2.0.2</version>
+			<artifactId>cglib</artifactId>
+			<version>2.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.poi</groupId>
