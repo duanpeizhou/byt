@@ -18,7 +18,7 @@ public class Test222 {
 	@Autowired
 	public IContraceptiveStatisticalRepository contraceptivIContraceptiveRepository;
 	
-	@Test
+//	@Test
 	public void test(){
 		contraceptivIContraceptiveRepository.statistByArea(1101060101,new Date(),new Date());
 	}

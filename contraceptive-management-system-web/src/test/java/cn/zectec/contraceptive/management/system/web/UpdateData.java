@@ -67,7 +67,7 @@ public class UpdateData {
 		}
 	}
 	
-	@Test
+//	@Test
 	public void update2() throws IOException{
 		InputStream is = UpdateData.class.getClassLoader().getResourceAsStream(
 				"data3.txt");

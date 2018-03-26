@@ -21,7 +21,7 @@ public class Test {
 	private IRoleManager roleManager;
 	
 	@Transactional
-	@org.junit.Test
+//	@org.junit.Test
 	public void test(){
 		/*Role r = roleManager.findOne(1L);
 		roleManager.add(r);

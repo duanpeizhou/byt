@@ -25,17 +25,17 @@ public class ContraceptiveController {
 	@Autowired
 	private IGetMedicineRecordManager recordService;
 	
-	@RequestMapping(value={"/shutdown"},method=RequestMethod.GET)
-	public String down(@RequestParam(value="s",defaultValue="true")Boolean s){
-		initApplication = s;
-		return "redirect:/index";
-	}
-	
-	//@Scheduled(cron="0 15 * 26 * ?")
-	public void init(){
-		initApplication =true;
-	}
-	
+//	@RequestMapping(value={"/shutdown"},method=RequestMethod.GET)
+//	public String down(@RequestParam(value="s",defaultValue="true")Boolean s){
+//		initApplication = s;
+//		return "redirect:/index";
+//	}
+//
+//	//@Scheduled(cron="0 15 * 26 * ?")
+//	public void init(){
+//		initApplication =true;
+//	}
+//
 	@JsonFilter(pojo=Contraceptive.class,allow={"id","name"})
 	@RequestMapping(value="/getContraceptive")
 	public Object getAllContraceptive(){
