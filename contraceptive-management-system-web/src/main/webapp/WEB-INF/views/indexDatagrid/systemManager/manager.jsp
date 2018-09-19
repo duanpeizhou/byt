@@ -327,7 +327,7 @@
 				<tr>  
 					<th field="id" data-options="formatter:fromatterRole,fixed:true,width:80,align:'center'">操作</th>
 					<th field="enable" data-options="formatter:fromatterEnable,fixed:true,width:80,align:'center'">状态</th>
-					<th field="username" align="center" data-options="fixed:true,width:150,align:'left'">用户名</th>
+					<%--<th field="username" align="center" data-options="fixed:true,width:150,align:'left'">用户名</th>--%>
 					<th field="name" align="center"  data-options="fixed:true,width:150,align:'left'">真实姓名</th>
 					<th field="ip"  data-options="fixed:true,width:120,align:'center'">最后登录Ip</th>
 					<th field="lastLoginTime"  data-options="fixed:true,width:160,align:'center'">最后登录时间</th>

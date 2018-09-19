@@ -398,9 +398,7 @@
 									<tr>
 										<td width="26" align="right" valign="middle"><img
 											src="images/index/340.gif" width="16" height="16" /></td>
-										<td class="qy_topk2px" colspan="2">&nbsp;用户名：<span
-											class="qy_lsfont">${sessionScope.session_manager.username}</span>
-											&nbsp;&nbsp;姓名：<span class="qy_lsfont">${sessionScope.session_manager.name}</span>&nbsp;&nbsp;登陆时间：&nbsp;&nbsp;<span
+										<td class="qy_topk2px" colspan="2">&nbsp;姓名：<span class="qy_lsfont">${sessionScope.session_manager.name}</span>&nbsp;&nbsp;登陆时间：&nbsp;&nbsp;<span
 											id='time'></span>
 										</td>
 									</tr>

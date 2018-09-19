@@ -24,7 +24,8 @@ $(function(){
 			$("#username_msg").text("请输入用户名").show();
 			return;
 		}
-		$("#username_msg").text("").hiden();
+		$("#username_msg").text("");
+        $("#username_msg").hiden();
 	});
 	$("input[name='password1']").blur(function(){
 		var value = $(this).val();
@@ -38,10 +39,9 @@ $(function(){
 		 var flag = ($("input[name='username']").val().length!=0)
 			 && ($("input[name='password']").val().length!=0);
 		 if(flag){
-             var username = $("input[name='username']").val();
+             var username = hex_md5($("input[name='username']").val());
              var passwordHash = hex_md5($("input[name='password']").val());
 		 	$.post("login",{"username":username,"password":passwordHash}, function(data) {
-		 		console.warn(data.status)
 		 		if (data.status == 1) {
                     window.location.href = "index";
                 } else {
