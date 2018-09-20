@@ -86,5 +86,10 @@ public class LoginController {
 	public String noPermissionUI(){
 		return "noPermission";
 	}
+
+	@RequestMapping("/errorPage")
+	public String errorPage() {
+		return "errorPage";
+	}
 	
 }
