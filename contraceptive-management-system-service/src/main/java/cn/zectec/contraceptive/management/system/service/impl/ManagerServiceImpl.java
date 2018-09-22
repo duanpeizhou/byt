@@ -1,14 +1,5 @@
 package cn.zectec.contraceptive.management.system.service.impl;
 
-import java.util.Date;
-import java.util.Iterator;
-import java.util.Set;
-
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.stereotype.Service;
-
 import cn.zectec.contraceptive.management.system.manager.IAreaManager;
 import cn.zectec.contraceptive.management.system.manager.IManagerManager;
 import cn.zectec.contraceptive.management.system.manager.IRoleManager;
@@ -18,6 +9,15 @@ import cn.zectec.contraceptive.management.system.model.Role;
 import cn.zectec.contraceptive.management.system.repository.util.SearchFilter;
 import cn.zectec.contraceptive.management.system.security.service.SecurityContext;
 import cn.zectec.contraceptive.management.system.service.IManagerService;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
+import org.springframework.util.DigestUtils;
+
+import java.util.Date;
+import java.util.Iterator;
+import java.util.Set;
 
 
 @Service
@@ -78,6 +78,12 @@ public class ManagerServiceImpl implements IManagerService{
 	 */
 	@Override
 	public void addManager(Manager manager) {
+		if (manager.getUsername() != null && manager.getUsername().length() > 0) {
+			String md5DigestAsHex = DigestUtils.md5DigestAsHex(manager.getUsername().getBytes());
+			manager.setUsername(md5DigestAsHex);
+            String password = DigestUtils.md5DigestAsHex(manager.getPassword().getBytes());
+            manager.setPassword(password);
+        }
 		if(manager.getSuperManager()){
 			manager.setCounty(null);
 			manager.setTownshipStreet(null);
@@ -104,7 +110,7 @@ public class ManagerServiceImpl implements IManagerService{
 	@Override
 	public void update(Manager manager) {
 		Manager manager1 =managerManager.findOne(manager.getId());
-		if (manager1.getPassword()==manager.getPassword()) {
+		if (manager1.getPassword().equals(manager.getPassword())) {
 			manager.setLastModifyPasswordTime(new Date());
 			BeanUtils.copyProperties(manager1, manager,new String[]{"username","password","name","superManager","enable","townshipStreet","county","remark","lastModifyPasswordTime"});
 		}else{

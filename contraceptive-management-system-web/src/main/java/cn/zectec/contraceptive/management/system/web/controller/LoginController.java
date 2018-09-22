@@ -1,26 +1,24 @@
 package cn.zectec.contraceptive.management.system.web.controller;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import javax.servlet.http.HttpSession;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import cn.zectec.contraceptive.management.system.model.Manager;
 import cn.zectec.contraceptive.management.system.model.Menu;
 import cn.zectec.contraceptive.management.system.security.service.SecurityContext;
 import cn.zectec.contraceptive.management.system.service.IManagerService;
 import cn.zectec.contraceptive.management.system.service.IMenuService;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpSession;
+import java.util.*;
 
 @Controller
 public class LoginController {
+	private static Logger logger = org.apache.log4j.Logger.getLogger(MenuController.class);
 	@Autowired
 	private IManagerService managerService;
 	@Autowired
@@ -35,23 +33,28 @@ public class LoginController {
 		}
 		return "Login";
 	}
-	
-	@RequestMapping(value={"/login"},method=RequestMethod.POST)
-	public String login(@RequestParam("username")String username,@RequestParam("password")String password,Model model,HttpSession session){
-		if(SecurityContext.getCurrentManager()!=null){
-			return "redirect:/index";
+
+	@ResponseBody
+	@RequestMapping(value = {"/login"}, method = RequestMethod.POST)
+	public Map<String, Object> login(@RequestParam("username") String username, @RequestParam("password") String password, HttpSession session) {
+		logger.info("user login , username = " + username + ", password = " + password);
+		Map<String, Object> map = new HashMap<>();
+		if (SecurityContext.getCurrentManager() != null) {
+			map.put("status", 1);
+			return map;
 		}
 		Manager manager = managerService.login(username, password);
-		if(manager == null){
-			model.addAttribute("error", "用户名或密码错误");
-			model.addAttribute("username", username);
-			return "Login";
-		}else{
+		if (manager == null) {
+			map.put("error", "用户名或密码错误");
+			map.put("status", 0);
+			return map;
+		} else {
 			Menu m = menuService.getCurrentManagerMenu();
 			session.setAttribute("manager_menu", m);
 			session.setAttribute("manager_menu_url", getAllUrl(m));
 			session.setAttribute("all_menus_url", getAllUrl(menuService.getAllMenu()));
-			return "redirect:/index";
+			map.put("status", 1);
+			return map;
 		}
 	}
 	private Set<String> getAllUrl(Menu m){
@@ -82,6 +85,11 @@ public class LoginController {
 	@RequestMapping(value={"/noPermission"},method=RequestMethod.GET)
 	public String noPermissionUI(){
 		return "noPermission";
+	}
+
+	@RequestMapping("/errorPage")
+	public String errorPage() {
+		return "errorPage";
 	}
 	
 }

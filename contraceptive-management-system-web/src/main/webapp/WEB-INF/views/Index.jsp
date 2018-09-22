@@ -23,7 +23,8 @@
 	type="text/javascript"></script>
 <script src="js/jquery-easyui-1.3.5/locale/easyui-lang-zh_CN.js"
 	type="text/javascript"></script>
-<script src="FusionCharts/FusionCharts.js" type="text/javascript"></script>
+	<script type="text/javascript" src="js/md5.js"></script>
+	<script src="FusionCharts/FusionCharts.js" type="text/javascript"></script>
 <script src="js/commonJS1.js" type="text/javascript"></script>
 <link href="css/default.css" rel="stylesheet" type="text/css" />
 <link href="css/index.css" rel="stylesheet" type="text/css" />
@@ -179,26 +180,40 @@
 		$('#passwordDialog').dialog('open');
 	}
 	function savePassword() {
-		$('#fm').form('submit', {
-			url : "updatePassword",
-			onSubmit : function() {
-				return $(this).form('validate');
-			},
-			success : function(result) {
-				if (!result) {
-					$.messager.alert('提示', '修改密码错误!');
-				} else {
-					$('#passwordDialog').dialog('close'); // close the dialog
-					$.messager.alert('提示', '修改密码成功!');
-				}
-			}
-		});
+
+	    if($('#fm').form('validate')){
+            var new1 = hex_md5($("#new1").val());
+            var managerId = $("#managerId").val();
+            $.post("updatePassword", {"id": managerId, "newPassword": new1},
+                function (data) {
+					if (data == 'true'){
+                        $('#passwordDialog').dialog('close'); // close the dialog
+                        $.messager.alert('提示', '修改密码成功!');
+					}else{
+                        $.messager.alert('提示', '修改密码错误!');
+					}
+                });
+		}
+		// $('#fm').form('submit', {
+		// 	url : "updatePassword",
+		// 	onSubmit : function() {
+		// 		return $(this).form('validate');
+		// 	},
+		// 	success : function(result) {
+		// 		if (!result) {
+		// 			$.messager.alert('提示', '修改密码错误!');
+		// 		} else {
+		// 			$('#passwordDialog').dialog('close'); // close the dialog
+		// 			$.messager.alert('提示', '修改密码成功!');
+		// 		}
+		// 	}
+		// });
 	}
 	$.extend($.fn.validatebox.defaults.rules, {
 		oldPassword : {
 			validator : function(value) {
 				var old = '${sessionScope.session_manager.password}';
-				return old == value;
+				return old == hex_md5(value);
 			},
 			message : '原密码错误！'
 		},
@@ -383,9 +398,7 @@
 									<tr>
 										<td width="26" align="right" valign="middle"><img
 											src="images/index/340.gif" width="16" height="16" /></td>
-										<td class="qy_topk2px" colspan="2">&nbsp;用户名：<span
-											class="qy_lsfont">${sessionScope.session_manager.username}</span>
-											&nbsp;&nbsp;姓名：<span class="qy_lsfont">${sessionScope.session_manager.name}</span>&nbsp;&nbsp;登陆时间：&nbsp;&nbsp;<span
+										<td class="qy_topk2px" colspan="2">&nbsp;姓名：<span class="qy_lsfont">${sessionScope.session_manager.name}</span>&nbsp;&nbsp;登陆时间：&nbsp;&nbsp;<span
 											id='time'></span>
 										</td>
 									</tr>
@@ -400,19 +413,19 @@
 			buttons="#dialogButtons" data-options="closed:true,title:'修改密码'"
 			style="width: 380px; height: 280px; padding: 30px 20px;">
 			<form id="fm" method="post" novalidate>
-				<input type="hidden" name="id"
+				<input id="managerId" type="hidden" name="id"
 					value="${sessionScope.session_manager.id}" />
 				<%-- <input type="text"  value="${sessionScope.session_manager.password}"/> --%>
 				<div class="fitem">
-					<label>原密码：</label> <input id="old" class="easyui-validatebox"
+					<label>原密码：</label> <input id="old" type="password" class="easyui-validatebox"
 						required="true" data-options="validType:'oldPassword'" />
 				</div>
 				<div class="fitem">
-					<label>新密码：</label> <input id="new1" class="easyui-validatebox"
+					<label>新密码：</label> <input id="new1" type="password" class="easyui-validatebox"
 						required="true" />
 				</div>
 				<div class="fitem">
-					<label>确认：</label> <input id="new2" name="newPassword"
+					<label>确认：</label> <input id="new2" type="password" name="newPassword"
 						class="easyui-validatebox" required="true"
 						data-options="validType:'confirmPassword'" />
 				</div>
@@ -590,73 +603,6 @@
 			</script>
 		</div>
 	</div>
-	<!-- <div id="mm" class="easyui-menu" title="多标签右键菜单" style="width: 150px; display: none">
-        <div id="mm-tabupdate">
-            刷新</div>
-        <div class="menu-sep">
-        </div>
-        <div id="mm-tabclose">
-            关闭</div>
-        <div id="mm-tabcloseall">
-            全部关闭</div>
-        <div id="mm-tabcloseother">
-            除此之外全部关闭</div>
-        <div class="menu-sep">
-        </div>
-        <div id="mm-tabcloseright">
-            当前页右侧全部关闭</div>
-        <div id="mm-tabcloseleft">
-            当前页左侧全部关闭</div>
-        <div class="menu-sep">
-        </div>
-        <div id="mm-exit">
-            退出</div>
-    </div> -->
-	<!-- <div id="win_changepwd" class="easyui-window" closed="true" title="修改密码" icon="icon-save"
-        style="width: 350px; height: 200px; padding: 5px; background: #fafafa;">
-        <div class="easyui-layout" fit="true" id="password" style="display: none">
-            <div region="center" border="false" style="padding: 10px; background: #fff; border: 1px solid #ccc;">
-                <form id="win_changepwd_form" name="win_changepwd_form" method="post">
-                <table cellpadding="3" align="center">
-                    <tr>
-                        <td>
-                            旧密码：
-                        </td>
-                        <td>
-                            <input id="OldPassword" name="OldPassword" type="password" class="easyui-validatebox"
-                                required="true" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            新密码：
-                        </td>
-                        <td>
-                            <input id="NewPassword" name="NewPassword" type="password" class="easyui-validatebox"
-                                required="true" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            确认密码：
-                        </td>
-                        <td>
-                            <input id="NewPasswordRe" name="NewPasswordRe" type="password" class="easyui-validatebox"
-                                required="true" validtype="equalTo['#NewPassword']" />
-                        </td>
-                    </tr>
-                </table>
-                </form>
-            </div>
-            <div region="south" border="false" style="text-align: center; height: 30px; line-height: 30px;">
-                <a id="btnEp" class="easyui-linkbutton" icon="icon-ok" href="javascript:void(0)">确定</a>
-                <a id="btnCancel" class="easyui-linkbutton" icon="icon-cancel" href="javascript:void(0)">
-                    关闭</a>
-            </div>
-        </div>
-    </div> 
-    <form id="form1" runat="server">
-    </form>-->
 	<div id="mm" class="easyui-menu" style="width: 150px;">
 		<div id="mm-tabclose">关闭</div>
 		<div id="mm-tabcloseall">全部关闭</div>

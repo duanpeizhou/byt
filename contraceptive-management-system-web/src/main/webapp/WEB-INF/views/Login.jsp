@@ -11,14 +11,13 @@
 	<base href="${basePath}"/>
     <title>用户登陆</title>
     <link href="images/login/css.css" rel="stylesheet" type="text/css" />
-    	<script type="text/javascript" src="js/jquery-easyui-1.3.5/jquery.min.js"></script>
-    	<script type="text/javascript" src="js/login.js">
-	</script>
-	
+    <script type="text/javascript" src="js/jquery-easyui-1.3.5/jquery.min.js"></script>
+    <script type="text/javascript" src="js/md5.js"></script>
+    <script type="text/javascript" src="js/login.js"></script>
 </head>
 <body>
 	
-    <form id="login_form" action="login" method="post">
+    <form id="login_form">
     <div>
         <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
             <tr>
@@ -112,7 +111,7 @@
                                                         <table width="0" border="0" cellspacing="0" cellpadding="0" align="center">
                                                             <tr>
                                                                 <td align="center" valign="bottom">
-                                                                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="IbtnEnter" value="" type="submit"src="images/login/image_4.jpg"  style="border:0px;border-radius: 0px;width: 110px;height: 36px;background-image: url('images/login/image_4.jpg');"/>
+                                                                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="IbtnEnter" value="" src="images/login/image_4.jpg"  style="border:0px;border-radius: 0px;width: 110px;height: 36px;background-image: url('images/login/image_4.jpg');"/>
                                                                 </td>
                                                             </tr>
                                                         </table>

@@ -24,7 +24,8 @@ $(function(){
 			$("#username_msg").text("请输入用户名").show();
 			return;
 		}
-		$("#username_msg").text("").hiden();
+		$("#username_msg").text("");
+        $("#username_msg").hide();
 	});
 	$("input[name='password']").blur(function(){
 		var value = $(this).val();
@@ -32,13 +33,22 @@ $(function(){
 			$("#password_msg").text("请输入密码").show();
 			return;
 		}
-		$("#password_msg").text("").hiden();
+		$("#password_msg").text("").hide();
 	});
 	$("#IbtnEnter").click(function(){
-		 var flag = ($("input[name='username']").val().length!=0) && ($("input[name='password']").val().length!=0);
+		 var flag = ($("input[name='username']").val().length!=0)
+			 && ($("input[name='password']").val().length!=0);
 		 if(flag){
-			 $("#login_form").submit();
-		 }else{
+             var username = hex_md5($("input[name='username']").val());
+             var passwordHash = hex_md5($("input[name='password']").val());
+		 	$.post("login",{"username":username,"password":passwordHash}, function(data) {
+		 		if (data.status == 1) {
+                    window.location.href = "index";
+                } else {
+                    alert(data.error);
+				}
+			},"json");
+		 } else {
 				$("input[name='username']").blur();
 				$("input[name='password']").blur();
 				return false;
