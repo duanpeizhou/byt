@@ -25,15 +25,15 @@ $(function(){
 			return;
 		}
 		$("#username_msg").text("");
-        $("#username_msg").hiden();
+        $("#username_msg").hide();
 	});
-	$("input[name='password1']").blur(function(){
+	$("input[name='password']").blur(function(){
 		var value = $(this).val();
 		if(value.length==0){
 			$("#password_msg").text("请输入密码").show();
 			return;
 		}
-		$("#password_msg").text("").hiden();
+		$("#password_msg").text("").hide();
 	});
 	$("#IbtnEnter").click(function(){
 		 var flag = ($("input[name='username']").val().length!=0)
@@ -48,11 +48,9 @@ $(function(){
                     alert(data.error);
 				}
 			},"json");
-             // ($("input[name='password']").val(hex_md5(($("input[name='password1']").val()))));
-             // $("#login_form").submit();
-		 }else{
+		 } else {
 				$("input[name='username']").blur();
-				$("input[name='password1']").blur();
+				$("input[name='password']").blur();
 				return false;
 		 }
 	});
