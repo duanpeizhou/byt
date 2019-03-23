@@ -1,12 +1,11 @@
 package cn.zectec.contraceptive.management.system.service;
 
-import java.util.Date;
-import java.util.List;
-
+import cn.zectec.contraceptive.management.system.model.GetMedicineRecord;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort.Direction;
 
-import cn.zectec.contraceptive.management.system.model.GetMedicineRecord;
+import java.util.Date;
+import java.util.List;
 
 public interface IGetMedicineRecordService {
 	/**
@@ -53,5 +52,9 @@ public interface IGetMedicineRecordService {
 	public List<GetMedicineRecord> getMedicineRecordsByGetTime(Date startTime,Date endTime);
 	
 	public long getCounts(Date startTime, Date endTime);
+
+	public List<GetMedicineRecord> find10NotSentRecords();
+
+	void updateSendStatus(boolean result, long id);
 
 }

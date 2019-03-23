@@ -25,21 +25,21 @@ public class GetMedicineRecordListener {
 		if(handlers == null){
 			handlers =  new ArrayList<DataChangeHandler<GetMedicineRecord>>();
 		}
-		handlers.add(handler);
+//		handlers.add(handler);
 	}
 	
 	
 	public void postSave(GetMedicineRecord getMedicineRecord){
-		logger.debug("当前的Handlers为"+handlers);
-		if(handlers == null){
-			return;
-		}
-		for(DataChangeHandler<GetMedicineRecord> handler : handlers){
-			try {
-				handler.doAfterSave(getMedicineRecord);
-			} catch (Exception e) {
-				logger.error("GetMedicineRecordListener.postSave()");
-			}
-		}
+//		logger.debug("当前的Handlers为"+handlers);
+//		if(handlers == null){
+//			return;
+//		}
+//		for(DataChangeHandler<GetMedicineRecord> handler : handlers){
+//			try {
+//				handler.doAfterSave(getMedicineRecord);
+//			} catch (Exception e) {
+//				logger.error("GetMedicineRecordListener.postSave()");
+//			}
+//		}
 	}
 }

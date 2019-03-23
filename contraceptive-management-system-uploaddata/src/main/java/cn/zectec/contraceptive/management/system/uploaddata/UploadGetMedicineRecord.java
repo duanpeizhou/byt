@@ -61,7 +61,7 @@ public class UploadGetMedicineRecord implements DataChangeHandler<GetMedicineRec
 		threadPool.execute(transmitter);
 	}
 	
-	@Scheduled(fixedRate=1000*60*1)
+//	@Scheduled(fixedRate=1000*60*1)
 	private void loadGetMedicineRecordFromDB() {
 		List<GetMedicineRecord> sentTrue = getMedicineRecordManager.findNotSendRecords();
 		logger.info("执行了loadGetMedicineRecordFromDB。要发送的记录数为："+sentTrue.size());

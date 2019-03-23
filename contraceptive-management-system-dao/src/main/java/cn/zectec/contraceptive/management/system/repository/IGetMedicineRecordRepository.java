@@ -12,7 +12,7 @@ import cn.zectec.contraceptive.management.system.repository.util.IBaseRepository
 
 public interface IGetMedicineRecordRepository extends IBaseRepository<GetMedicineRecord> {	
 	
-	@Query("select g from GetMedicineRecord g where g.sent = false")	
+	@Query("select g from GetMedicineRecord g where g.sent = false")
 	public List<GetMedicineRecord> findNotSendRecords();
 	
 	@Query("select g from GetMedicineRecord g where g.sent = false")	

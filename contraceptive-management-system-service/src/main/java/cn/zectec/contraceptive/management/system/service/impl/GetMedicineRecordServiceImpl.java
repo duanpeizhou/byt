@@ -176,5 +176,15 @@ public class GetMedicineRecordServiceImpl implements IGetMedicineRecordService {
 		return getMedicineRecordManager.getCounts(startTime, endTime, null, null);
 	}
 
+	@Override
+	public List<GetMedicineRecord> find10NotSentRecords() {
+		return getMedicineRecordManager.find10NotSendRecords();
+	}
+
+	@Override
+	public void updateSendStatus(boolean result, long id) {
+		getMedicineRecordManager.updateSendStatus(result, id);
+	}
+
 
 }

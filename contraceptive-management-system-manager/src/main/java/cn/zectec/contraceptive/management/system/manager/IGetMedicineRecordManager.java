@@ -13,4 +13,5 @@ public interface IGetMedicineRecordManager extends IBaseManager<GetMedicineRecor
 	public void updateSendStatus(boolean b, long id);
 	
 	public List<GetMedicineRecord> findNotSendRecords();
+	public List<GetMedicineRecord> find10NotSendRecords();
 }

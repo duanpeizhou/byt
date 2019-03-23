@@ -71,7 +71,7 @@ public class UploadMachineryEquipmentStatusInfo implements DataChangeHandler<Mac
 		loadMEStatusFormDB();
 	}
 	
-	@Scheduled(fixedRate=1000*60*1)
+//	@Scheduled(fixedRate=1000*60*1)
 	public void uploadDataFromQueue(){
 		logger.info("queue的大小为："+queue.size());
 		while (true) {

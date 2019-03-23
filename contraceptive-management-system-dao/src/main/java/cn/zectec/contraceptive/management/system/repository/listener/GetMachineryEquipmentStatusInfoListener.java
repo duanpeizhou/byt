@@ -19,7 +19,7 @@ public class GetMachineryEquipmentStatusInfoListener {
 		if(handlers == null){
 			handlers =  new ArrayList<DataChangeHandler<MachineryEquipmentStateChangeRecord>>();
 		}
-		handlers.add(handler);
+//		handlers.add(handler);
 	}
 	
 	
@@ -27,12 +27,12 @@ public class GetMachineryEquipmentStatusInfoListener {
 		if(handlers == null){
 			return;
 		}
-		for(DataChangeHandler<MachineryEquipmentStateChangeRecord> handler : handlers){
-			try {
-				handler.doAfterSave(getMedicineRecord);
-			} catch (Exception e) {
-				logger.error("GetMachineryEquipmentStatusInfoListener.postSave() 出错");
-			}
-		}
+//		for(DataChangeHandler<MachineryEquipmentStateChangeRecord> handler : handlers){
+//			try {
+//				handler.doAfterSave(getMedicineRecord);
+//			} catch (Exception e) {
+//				logger.error("GetMachineryEquipmentStatusInfoListener.postSave() 出错");
+//			}
+//		}
 	}
 }
