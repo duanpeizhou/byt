@@ -16,14 +16,14 @@ public class UploadDataTask {
     private UploadDataService uploadDataService;
 
 
-//    @Scheduled(fixedRate=1000*60*2)
+    @Scheduled(fixedRate=1000*60*2)
     public void upload() {
         uploadDataService.sendGetMedicineRecord();
     }
 
-//    @Scheduled(fixedRate=1000*60*3)
+    @Scheduled(fixedRate=1010*60*3)
     public void uploadMachineInfo() {
-//        uploadDataService.sendMachineInfo();
+        uploadDataService.sendMachineInfo();
     }
 
 }

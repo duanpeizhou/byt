@@ -34,11 +34,11 @@ import java.util.List;
 public class UploadDataService {
     private static Logger logger=Logger.getLogger(UploadDataService.class);
 
-//    private static final String SEND_MEDICINE_RECORD_URL = "http://beijing.yaoju.org.cn/fafangji/cgi-bin/machleadrecord";
-    private static final String SEND_MEDICINE_RECORD_URL = "http://127.0.0.1:6060/data/record";
+    private static final String SEND_MEDICINE_RECORD_URL = "http://beijing.yaoju.org.cn/fafangji/cgi-bin/machleadrecord";
+//    private static final String SEND_MEDICINE_RECORD_URL = "http://127.0.0.1:6060/data/record";
 
-    private static final String SEND_MACHINE_URL = "http://127.0.0.1:6060/data/record";
-//    private static final String SEND_MACHINE_URL = "http://beijing.yaoju.org.cn/fafangji/cgi-bin/machineinfo";
+//    private static final String SEND_MACHINE_URL = "http://127.0.0.1:6060/data/record";
+    private static final String SEND_MACHINE_URL = "http://beijing.yaoju.org.cn/fafangji/cgi-bin/machineinfo";
 
     private static final String APP_ID = "maxd6675830502c46ab";
 
@@ -84,6 +84,8 @@ public class UploadDataService {
             isSendingRecord = false;
         } catch (Exception e) {
             logger.error("上传药具领用记录失败", e);
+        } finally {
+            isSendingRecord = false;
         }
 
     }
@@ -120,6 +122,8 @@ public class UploadDataService {
             isSendingMachInfo = false;
         } catch (Exception e) {
             logger.error("上传状态信息有误", e);
+        } finally {
+            isSendingMachInfo = false;
         }
     }
 
