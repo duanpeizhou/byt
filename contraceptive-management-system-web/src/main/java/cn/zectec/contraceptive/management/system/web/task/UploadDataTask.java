@@ -9,7 +9,7 @@ import javax.annotation.Resource;
 /**
  * @author duanpeizhou on 2019-03-20 20:27.
  */
-@Service
+//@Service
 public class UploadDataTask {
 
     @Resource

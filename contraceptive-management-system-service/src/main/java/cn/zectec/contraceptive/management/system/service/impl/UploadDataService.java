@@ -34,17 +34,21 @@ import java.util.List;
 public class UploadDataService {
     private static Logger logger=Logger.getLogger(UploadDataService.class);
 
-    private static final String SEND_MEDICINE_RECORD_URL = "http://beijing.yaoju.org.cn/fafangji/cgi-bin/machleadrecord";
-//    private static final String SEND_MEDICINE_RECORD_URL = "http://127.0.0.1:6060/data/record";
+//    private static final String SEND_MEDICINE_RECORD_URL = "http://beijing.yaoju.org.cn/fafangji/cgi-bin/machleadrecord";
+    private static final String SEND_MEDICINE_RECORD_URL = "http://jswtest.yaoju.org.cn/fafangji/cgi-bin/machleadrecord";
 
-//    private static final String SEND_MACHINE_URL = "http://127.0.0.1:6060/data/record";
-    private static final String SEND_MACHINE_URL = "http://beijing.yaoju.org.cn/fafangji/cgi-bin/machineinfo";
+    private static final String SEND_MACHINE_URL = "http://jswtest.yaoju.org.cn/fafangji/cgi-bin/machineinfo";
+//    private static final String SEND_MACHINE_URL = "http://beijing.yaoju.org.cn/fafangji/cgi-bin/machineinfo";
 
-    private static final String APP_ID = "maxd6675830502c46ab";
+    private static final String APP_ID = "max477ae9a013984be0";
+//    private static final String APP_ID = "maxd6675830502c46ab";
 
-    private static final String TOKEN = "2efd2b16907d40cea12de9ff335d5b31";
+//    private static final String TOKEN = "2efd2b16907d40cea12de9ff335d5b31";
+    private static final String TOKEN = "7674c29791904d098604098c3dfa05b1";
 
     private static final String SIGN_BASE = APP_ID + TOKEN;
+
+    private volatile boolean serverIsReady = true;
 
     @Resource
     private IGetMedicineRecordService getMedicineRecordService;
@@ -66,6 +70,7 @@ public class UploadDataService {
             }
             List<GetMedicineRecord> notSentRecords = getMedicineRecordService.find10NotSentRecords();
             if (notSentRecords.isEmpty()) {
+                logger.info("没有需要上传的药具领用记录");
                 return;
             }
             isSendingRecord = true;
@@ -109,7 +114,7 @@ public class UploadDataService {
                 if (size % 50 == 0) {
                     JSONObject result = post(JSON.toJSONString(dtoList), SEND_MACHINE_URL);
                     if (result.containsKey("code") && result.getIntValue("code") == 0) {
-                        logger.info("上传机器状态成功");
+                        logger.info("上传机器状态成功:" + size);
                     }
                     dtoList.clear();
                 }
@@ -117,7 +122,7 @@ public class UploadDataService {
             }
             JSONObject result = post(JSON.toJSONString(dtoList), SEND_MACHINE_URL);
             if (result.containsKey("code") && result.getIntValue("code") == 0) {
-                logger.info("上传机器状态成功");
+                logger.info("上传机器状态成功:" + size);
             }
             isSendingMachInfo = false;
         } catch (Exception e) {
@@ -134,7 +139,10 @@ public class UploadDataService {
             postMethod.setRequestEntity(requestEntity);
             httpClient.executeMethod(postMethod);
             String responseBody = postMethod.getResponseBodyAsString();
-            return JSON.parseObject(responseBody, JSONObject.class);
+            logger.info("response body = " + responseBody);
+            if (responseBody != null && responseBody.length() > 0) {
+                return JSON.parseObject(responseBody, JSONObject.class);
+            }
         } catch (Exception e) {
             logger.error("上传数据失败：" + url, e);
         }
@@ -145,7 +153,7 @@ public class UploadDataService {
         long millis = System.currentTimeMillis();
         StringBuilder builder = new StringBuilder();
         builder.append("?appId=").append(APP_ID);
-        builder.append("&timestamp=").append(millis);
+        builder.append("&timeStamp=").append(millis);
         String sign = DigestUtils.md5Hex(SIGN_BASE + millis);
         builder.append("&sign=").append(sign);
         return builder.toString();
