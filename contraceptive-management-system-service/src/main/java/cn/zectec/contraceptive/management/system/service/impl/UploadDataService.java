@@ -34,17 +34,19 @@ import java.util.List;
 public class UploadDataService {
     private static Logger logger=Logger.getLogger(UploadDataService.class);
 
-//    private static final String SEND_MEDICINE_RECORD_URL = "http://beijing.yaoju.org.cn/fafangji/cgi-bin/machleadrecord";
-    private static final String SEND_MEDICINE_RECORD_URL = "http://jswtest.yaoju.org.cn/fafangji/cgi-bin/machleadrecord";
+    private static final String SEND_MEDICINE_RECORD_URL = "http://beijing.yaoju.org.cn/fafangji/cgi-bin/machleadrecord";
+//    private static final String SEND_MEDICINE_RECORD_URL = "http://jswtest.yaoju.org.cn/fafangji/cgi-bin/machleadrecord";
 
-    private static final String SEND_MACHINE_URL = "http://jswtest.yaoju.org.cn/fafangji/cgi-bin/machineinfo";
-//    private static final String SEND_MACHINE_URL = "http://beijing.yaoju.org.cn/fafangji/cgi-bin/machineinfo";
+//    private static final String SEND_MACHINE_URL = "http://jswtest.yaoju.org.cn/fafangji/cgi-bin/machineinfo";
+    private static final String SEND_MACHINE_URL = "http://beijing.yaoju.org.cn/fafangji/cgi-bin/machineinfo";
 
-    private static final String APP_ID = "max477ae9a013984be0";
+    //    private static final String APP_ID = "max477ae9a013984be0";
 //    private static final String APP_ID = "maxd6675830502c46ab";
+    private static final String APP_ID = "maxcda9f44b892147f2";
 
-//    private static final String TOKEN = "2efd2b16907d40cea12de9ff335d5b31";
-    private static final String TOKEN = "7674c29791904d098604098c3dfa05b1";
+    //    private static final String TOKEN = "2efd2b16907d40cea12de9ff335d5b31";
+//    private static final String TOKEN = "7674c29791904d098604098c3dfa05b1";
+    private static final String TOKEN = "124c3d01582b4c8a8a3c8221bd5e9722";
 
     private static final String SIGN_BASE = APP_ID + TOKEN;
 
