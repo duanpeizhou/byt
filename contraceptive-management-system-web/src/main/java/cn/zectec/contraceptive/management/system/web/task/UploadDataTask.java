@@ -16,7 +16,7 @@ public class UploadDataTask {
     private UploadDataService uploadDataService;
 
 
-    @Scheduled(fixedRate=1000*60*2)
+    @Scheduled(cron = "0 0/5 22,23,0-5 * * *")
     public void upload() {
         uploadDataService.sendGetMedicineRecord();
     }

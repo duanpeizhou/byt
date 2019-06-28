@@ -22,12 +22,6 @@ import java.util.List;
  * 畅速 2019/03/20 下午3:18
  * 名称：上海葆青电子有限公司
  *
- * angentCode：BJBQ
- * 接口域名（APP_HOST）：http://beijing.yaoju.org.cn/fafangji/
- * appId：maxd6675830502c46ab
- * token：2efd2b16907d40cea12de9ff335d5b31
- *
- *
  * @author duanpeizhou on 2019-03-20 20:49.
  */
 @Service
@@ -80,6 +74,7 @@ public class UploadDataService {
             for (GetMedicineRecord notSentRecord : notSentRecords) {
                 dto.add(new MedicineRecordDto(notSentRecord));
             }
+            logger.info("开始发送数据");
             JSONObject result = post(JSON.toJSONString(dto), SEND_MEDICINE_RECORD_URL);
             logger.info("上传数据响应 = " + result);
             if (result.containsKey("code") && result.getIntValue("code") == 0) {
@@ -113,15 +108,17 @@ public class UploadDataService {
             int size = 1;
             for (MachineryEquipment me : all) {
                 dtoList.add(new MachineInfoDto(me));
-                if (size % 50 == 0) {
+                if (size % 400 == 0) {
                     JSONObject result = post(JSON.toJSONString(dtoList), SEND_MACHINE_URL);
                     if (result.containsKey("code") && result.getIntValue("code") == 0) {
                         logger.info("上传机器状态成功:" + size);
                     }
                     dtoList.clear();
+                    Thread.sleep(70 * 1000);
                 }
                 size++;
             }
+            logger.info("开始发送数据");
             JSONObject result = post(JSON.toJSONString(dtoList), SEND_MACHINE_URL);
             if (result.containsKey("code") && result.getIntValue("code") == 0) {
                 logger.info("上传机器状态成功:" + size);
@@ -141,7 +138,7 @@ public class UploadDataService {
             postMethod.setRequestEntity(requestEntity);
             httpClient.executeMethod(postMethod);
             String responseBody = postMethod.getResponseBodyAsString();
-            logger.info("response body = " + responseBody);
+            logger.info("post url = " + postMethod.getURI().toString() + " , response body " + responseBody);
             if (responseBody != null && responseBody.length() > 0) {
                 return JSON.parseObject(responseBody, JSONObject.class);
             }

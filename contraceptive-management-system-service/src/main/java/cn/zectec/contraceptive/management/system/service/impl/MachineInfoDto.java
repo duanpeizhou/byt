@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class MachineInfoDto {
     private String machineCode;
-    private String agentCode = "BJBQ";
+    private String agentCode = "baoqing";
     private String location = "";
     private int connectionStatus;//1=正常，2=离线
     private int machineStatus;//1=正常，2=故障

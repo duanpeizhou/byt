@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat;
 public class MedicineRecordDto {
     private static SimpleDateFormat SIMPLE = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private String machineCode;
-    private String agentCode = "BJBQ";
+    private String agentCode = "baoqing";
     private Integer channelCode;
     private String productCode = "327";
     private String billNumber;
