@@ -16,7 +16,7 @@ public class OnlineGetRequestMessage extends RequestMessage{
 	private Date birthDay;
 	private String address;
 	private String IDCardNo;
-	private String stationName; 
+	private String stationName;
 	private Date beginDate;
 	private Date endDate;
 	private int billNumber;
@@ -29,7 +29,7 @@ public class OnlineGetRequestMessage extends RequestMessage{
 	}
 
 	@Override
-	public void parse(byte[] data, int offset, int length) {
+	public void parse(byte[] data, int offset, int length1) {
 		if(data[offset++]==0x01 && data[offset++]==0x01){
 			this.type = 0x01;
 			this.ownType = 0x01;
@@ -38,12 +38,12 @@ public class OnlineGetRequestMessage extends RequestMessage{
 				terminalNo *= 100;
 				terminalNo += ((data[offset] >> 4) & 0x0f) * 10 + (data[offset++] & 0x0f);
 			}
-			
+
 			cargoRoadNo = data[offset++];
 			cargoId = data[offset++];
 			cargoLeft = data[offset++];
-			
-			
+
+
 			try
 			{
 				String s = new String(data, offset, 256, "UTF-16LE").replaceAll("\\s+", " ");
@@ -58,13 +58,13 @@ public class OnlineGetRequestMessage extends RequestMessage{
 				Calendar cld = Calendar.getInstance();
 				cld.set(_year, _month, _date);
 				birthDay = cld.getTime();
-				
+
 				address = ss[1].substring(11);
-				
+
 				IDCardNo = ss[2].substring(0, 18);
-				
+
 				stationName = ss[2].substring(18);
-				
+
 				_year = Integer.parseInt(ss[3].substring(0, 4));
 				_month = Integer.parseInt(ss[3].substring(4, 6))-1;
 				_date = Integer.parseInt(ss[3].substring(6, 8));
@@ -83,20 +83,20 @@ public class OnlineGetRequestMessage extends RequestMessage{
 					cld.set(9999, 11, 31);
 					endDate = cld.getTime();
 				}
-				
+
 				offset += 256;
 			}
 			catch (Exception e)
 			{
 				e.printStackTrace();
 			}
-			
+
 			for(int i = 0; i < 5; i ++)
 			{
 				billNumber *= 100;
 				billNumber += ((data[offset] >> 4) & 0x0f) * 10 + (data[offset++]&0x0f);
 			}
-			
+
 			unknow = new byte[8];
 			for(int i=0;i<8;i++){
 				unknow[i] = data[offset++];
@@ -106,10 +106,10 @@ public class OnlineGetRequestMessage extends RequestMessage{
 				hardNo *= 100;
 				hardNo += ((data[offset] >> 4) & 0x0f) * 10 + (data[offset++] & 0x0f);
 			}
-			
+
 			Calendar calendar = GregorianCalendar.getInstance();
 			calendar.setTime(new Date());
-			
+
 			int temp = billNumber;
 			calendar.set(Calendar.SECOND, temp%100);
 			temp /=100;
@@ -133,13 +133,13 @@ public class OnlineGetRequestMessage extends RequestMessage{
 			throw new RuntimeException("数据不正常.....");
 		}
 	}
-	
+
 
 	@SuppressWarnings("deprecation")
 	private int parseAge(Date birthDay) {
 		return new Date().getYear()-birthDay.getYear();
 	}
-	
+
 	public int getAge() {
 		return age;
 	}

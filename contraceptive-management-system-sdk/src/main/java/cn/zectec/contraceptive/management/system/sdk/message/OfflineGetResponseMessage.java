@@ -9,10 +9,10 @@ public class OfflineGetResponseMessage extends ResponseMessage{
 	public byte[] bytes() {
 		int i = 0;
 		byte[] result = new byte[10];
-		
+
 		result[i++] = this.type;
 		result[i++] = this.ownType;
-		
+
 		long t = terminalNo;
 		for(int j = 0; j < 3; j ++)
 		{
@@ -21,7 +21,7 @@ public class OfflineGetResponseMessage extends ResponseMessage{
 			t /= 100;
 		}
 		i += 3;
-		
+
 		t = billNumber;
 		for(int j = 0; j < 5; j ++)
 		{
@@ -30,11 +30,11 @@ public class OfflineGetResponseMessage extends ResponseMessage{
 			t /= 100;
 		}
 		i += 5;
-		
+
 		return result;
 	}
 
-	
+
 	public long getBillNumber() {
 		return billNumber;
 	}
@@ -49,7 +49,7 @@ public class OfflineGetResponseMessage extends ResponseMessage{
 		OfflineGetResponseMessage msg = new OfflineGetResponseMessage();
 		msg.setBillNumber(1006025003);
 		msg.setTerminalNo(150158);
-//		System.out.println(ByteUtil.outputHexofByte(msg.bytes()));
+		System.out.println(ByteUtil.outputHexofByte(msg.bytes()));
 		//bb 00 08 00 01 11 00 82 06 30 10 27 42 be 71 cc
 		//		   00 01 00 00 00 06 30 10 27 42
 		//630102742

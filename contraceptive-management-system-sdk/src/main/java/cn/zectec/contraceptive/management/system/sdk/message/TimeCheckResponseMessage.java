@@ -1,5 +1,7 @@
 package cn.zectec.contraceptive.management.system.sdk.message;
 
+import org.apache.commons.codec.binary.Hex;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -7,7 +9,7 @@ import java.util.GregorianCalendar;
 
 public class TimeCheckResponseMessage extends ResponseMessage{
 	private Date time = new Date();
-	
+
 	public TimeCheckResponseMessage(){
 		this.type = 0x04;
 		this.ownType = 0x01;
@@ -25,10 +27,10 @@ public class TimeCheckResponseMessage extends ResponseMessage{
 	public byte[] bytes() {
 		int i = 0;
 		byte[] result = new byte[11];
-		
+
 		result[i++] = this.type;
 		result[i++] = this.ownType;
-		
+
 		int t = terminalNo;
 		for(int j = 0; j < 3; j ++)
 		{
@@ -37,7 +39,7 @@ public class TimeCheckResponseMessage extends ResponseMessage{
 			t /= 100;
 		}
 		i += 3;
-		
+
 		Calendar calendar = GregorianCalendar.getInstance();
 		calendar.setTime(time);
 		int year = calendar.get(Calendar.YEAR);
@@ -53,7 +55,14 @@ public class TimeCheckResponseMessage extends ResponseMessage{
 		result[i++] = (byte) (((min/10)<<4) + min%10);
 		int second = calendar.get(Calendar.SECOND);
 		result[i++] = (byte) (((second/10)<<4) + second%10);
-		
+
 		return result;
+	}
+
+	public static void main(String[] args) {
+		TimeCheckResponseMessage msg = new TimeCheckResponseMessage();
+		msg.setTerminalNo(150031);
+		String s = Hex.encodeHexString(msg.bytes());
+		System.out.println(s);
 	}
 }
