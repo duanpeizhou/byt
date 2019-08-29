@@ -9,19 +9,19 @@ import javax.annotation.Resource;
 /**
  * @author duanpeizhou on 2019-03-20 20:27.
  */
-@Service
+//@Service
 public class UploadDataTask {
 
-    @Resource
+//    @Resource
     private UploadDataService uploadDataService;
 
 
-    @Scheduled(cron = "0 0/5 22,23,0-5 * * *")
+//    @Scheduled(cron = "0 0/5 22,23,0-5 * * *")
     public void upload() {
         uploadDataService.sendGetMedicineRecord();
     }
 
-    @Scheduled(fixedRate=1010*60*3)
+//    @Scheduled(fixedRate=1010*60*3)
     public void uploadMachineInfo() {
         uploadDataService.sendMachineInfo();
     }
