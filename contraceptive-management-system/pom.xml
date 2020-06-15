@@ -12,7 +12,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<springPlatformVersion>3.1.4.RELEASE</springPlatformVersion>
+		<springPlatformVersion>5.2.7.RELEASE</springPlatformVersion>
 		<contraceptive-management-system-version>0.0.1-SNAPSHOT</contraceptive-management-system-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.hibernate-version>3.6.10.Final</org.hibernate-version>
